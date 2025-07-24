@@ -1,19 +1,26 @@
-// app/home/layout.tsx
+import './globals.css'
+import type { Metadata } from 'next'
+import { Poppins } from 'next/font/google'
+import { Toaster } from 'react-hot-toast'
 
-import BottomNav from "@/components/BottomNav";
-import ClientLayout from "@/components/ClientLayout";
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-poppins',
+})
 
+export const metadata: Metadata = {
+  title: 'Schedula',
+  description: 'Book and manage appointments smoothly.',
+}
 
-export default function HomeLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex flex-col min-h-screen max-w-md mx-auto bg-white">
-      {/* Scrollable page content */}
-      <div className="flex-1 overflow-y-auto">{children}</div>
-        <ClientLayout>
-            {children}
-        </ClientLayout>
-      {/* Fixed Bottom Navigation */}
-      <BottomNav />
-    </div>
-  );
+    <html lang="en">
+      <body className={`${poppins.variable} font-sans bg-gray-50`}>
+        <Toaster />
+        {children}
+      </body>
+    </html>
+  )
 }
