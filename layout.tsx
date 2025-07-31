@@ -1,26 +1,13 @@
-import './globals.css'
-import type { Metadata } from 'next'
-import { Poppins } from 'next/font/google'
-import { Toaster } from 'react-hot-toast'
+// app/dashboard/doctor/layout.tsx
+import DoctorSidebar from '@/components/DoctorSidebar';
 
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['400', '500', '600'],
-  variable: '--font-poppins',
-})
-
-export const metadata: Metadata = {
-  title: 'Schedula',
-  description: 'Book and manage appointments smoothly.',
-}
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function DoctorLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className={`${poppins.variable} font-sans bg-gray-50`}>
-        <Toaster />
+    <div className="flex min-h-screen bg-gray-50">
+      <DoctorSidebar />
+      <main className="flex-1 p-6 overflow-y-auto">
         {children}
-      </body>
-    </html>
-  )
+      </main>
+    </div>
+  );
 }
